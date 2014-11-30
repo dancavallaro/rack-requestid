@@ -21,3 +21,12 @@ Then in `config.ru`:
 	use Rack::RequestID
 
 Use Rack::RequestID before any middleware that needs a request ID. 
+
+There are a few options you can pass in:
+
+  * `:include_response_header` determines whether to include the request ID in a response header.
+  * `:generator` can be specified to provide a custom request ID generator.
+
+If you want to modify the options used, simply do:
+
+    use Rack::RequestID, :include_response_header => false, :generator => lambda { "#{Time.now.getutc.to_i}" }
