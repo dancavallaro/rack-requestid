@@ -14,7 +14,7 @@ of the response.
 
 To use Rack::RequestID, add the following to your Gemfile:
 
-	gem 'rack-requestid', :github => 'dancavallaro/rack-requestid'
+	gem 'rack-requestid'
 
 Then in `config.ru`:
 
