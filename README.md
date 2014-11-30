@@ -25,6 +25,7 @@ Use Rack::RequestID before any middleware that needs a request ID.
 There are a few options you can pass in:
 
   * `:include_response_header` determines whether to include the request ID in a response header.
+  * `:overwrite` can be enabled to overwrite any request ID provided by the platform or client.
   * `:generator` can be specified to provide a custom request ID generator.
 
 If you want to modify the options used, simply do:

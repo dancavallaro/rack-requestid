@@ -10,11 +10,12 @@ module Rack
       @app = app
 
       @include_response_header = options.fetch(:include_response_header, true)
+      @overwrite = options.fetch(:overwrite, false)
       @generator = options[:generator] || lambda { SecureRandom.uuid }
     end
 
     def call(env)
-      if !env.key? REQUEST_ID_KEY
+      if !env.key?(REQUEST_ID_KEY) || @overwrite
         request_id = @generator.call
         env[REQUEST_ID_KEY] = request_id
       end

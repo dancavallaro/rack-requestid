@@ -51,6 +51,16 @@ describe Rack::RequestID do
     end
   end
 
+  context "when overwriting request ID" do
+    let(:stack) { Rack::RequestID.new app, :overwrite => true }
+    
+    it "should overwrite request ID" do
+      response = request.get '/', REQUEST_ID_KEY => TEST_REQUEST_ID
+
+      expect(get_id_from_response(response)).not_to eq(TEST_REQUEST_ID)
+    end
+  end
+
   def get_id_from_response(response)
     YAML.load(response.body)[REQUEST_ID_KEY]
   end
