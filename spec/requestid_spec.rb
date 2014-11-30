@@ -29,6 +29,16 @@ describe Rack::RequestID do
     expect(get_id_from_response(response)).to eq('00000000-0000-0000-0000-000000000000')
   end
 
+  context "when header disabled" do
+    let(:stack) { Rack::RequestID.new app, :include_response_header => false }
+
+    it "should not insert response header" do
+      response = request.get '/'
+
+      expect(response.headers).not_to have_key(REQUEST_ID_HEADER)
+    end
+  end
+
   def get_id_from_response(response)
     YAML.load(response.body)[REQUEST_ID_KEY]
   end

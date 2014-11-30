@@ -6,8 +6,10 @@ module Rack
     REQUEST_ID_HEADER = 'X-Request-Id'
     REQUEST_ID_KEY = 'HTTP_X_REQUEST_ID'
 
-    def initialize(app)
+    def initialize(app, options={})
       @app = app
+
+      @include_response_header = options.fetch(:include_response_header, true)
     end
 
     def call(env)
@@ -17,7 +19,10 @@ module Rack
       end
 
       status, headers, body = @app.call(env)
-      headers[REQUEST_ID_HEADER] = env[REQUEST_ID_KEY]
+
+      if @include_response_header
+        headers[REQUEST_ID_HEADER] = env[REQUEST_ID_KEY]
+      end
 
       [status, headers, body]
     end
