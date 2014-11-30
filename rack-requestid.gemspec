@@ -7,4 +7,7 @@ Gem::Specification.new do |s|
   s.email = 'dan.t.cavallaro@gmail.com'
   s.homepage = 'https://github.com/dancavallaro/rack-requestid'
   s.files = Dir['{lib/**/*}'] + %w{README.md rack-requestid.gemspec}
+
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rack'
 end
