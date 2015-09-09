@@ -2,4 +2,4 @@ require 'bundler/setup'
 Bundler.setup
 
 require 'rack/mock'
-require 'rack/request_id'
+require 'rack/requestid'
